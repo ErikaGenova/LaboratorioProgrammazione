@@ -38,9 +38,9 @@ Activity::Activity() {
 std::string Activity::getDescription() {
 
     if (Activity::isUrgent())
-        return   Activity::description + "," + Activity::date + ", urgente" ;
+        return   Activity::description + "," + Activity::date + ",urgente" ;
     else
-        return   Activity::description + "," + Activity::date + ", non urgente" ;
+        return   Activity::description + "," + Activity::date + ",non urgente" ;
 
 }
 

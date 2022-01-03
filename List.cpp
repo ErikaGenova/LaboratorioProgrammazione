@@ -73,3 +73,9 @@ Activity List::getActivity(int index) {
 List::List() {
 
 }
+
+void List::editActivity(int index, string newTitle, string newDate, bool newUrgent) {
+    memo.at(index).setTitle(newTitle);
+    memo.at(index).setDate(newDate);
+    memo.at(index).setUrgent(newUrgent);
+}

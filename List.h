@@ -15,8 +15,9 @@ public:
     List();
     List(const std::string &titolo);
 
-    void addActivity(Activity p);
     Activity getActivity(int index);
+    void addActivity(Activity p);
+    void editActivity(int index, string newTitle, string newDate, bool newUrgent);
     void removeActivity(int num);
 
     void listActivities() const;

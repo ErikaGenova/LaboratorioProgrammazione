@@ -4,7 +4,7 @@
 #include "CollectionLists.h"
 #include <fstream>
 #include <vector>
-void HandleList(CollectionLists AllLists, int index);
+void HandleList(CollectionLists& AllLists, int index);
 using namespace std;
 
 int main() {
@@ -16,7 +16,7 @@ int main() {
     toDo.addList(titolo);
 
     while (azione != "Q") {
-        std::cout << "[L] Elenco liste - [A] Aggiungi lista - [M] Modifica lista - [S] Salva su file - [Q] Esci"<< std::endl;
+        std::cout << "[L] Elenco liste - [A] Aggiungi lista - [M] Modifica lista - [S] Salva su file - [R] Leggi da file - [Q] Esci"<< std::endl;
         std::cin >> azione;
 
         if (azione == "L") {
@@ -44,13 +44,52 @@ int main() {
                     List loopList = allLists.at(i);
                     myfile << "<" << loopList.getTitolo() << ">" << std::endl;
 
-                    cout << "countActivities = " << loopList.countActivities();
-
                     for (int j = 0; j < loopList.countActivities(); j++) {
                         myfile << " " << loopList.getActivity(j).getDescription() << std::endl;
                     }
                 };
 
+                myfile.close();
+            }
+
+        }
+        else if (azione== "R"){
+            std::vector<List> allLists = toDo.getFullCollection();
+            fstream myfile;
+            List currentList;
+            string listTitle, activityTitle, activityDate, activityUrgent;
+            bool bUrgent;
+            int listIndex=-1;
+            myfile.open ("ToDo.txt", ios::in);
+
+            if(myfile.is_open()) {
+                string line;
+
+                while (getline(myfile, line)){
+                    if (line[0] == '<') {
+                        listTitle = line.substr(1, line.length()-2);
+                        //List currentList(listTitle);
+                        currentList.setTitolo(listTitle);
+                        toDo.addList(currentList);
+                        //listIndex++;
+                    }
+                    else {
+                        activityTitle = line.substr(0, line.find(','));
+                        line.erase(0, line.find(',') + 1);
+                        activityDate = line.substr(0, line.find(','));
+                        line.erase(0, line.find(',') + 1);
+                        activityUrgent = line;
+
+                        if (activityUrgent == "urgente")
+                            bUrgent = true;
+                        else
+                            bUrgent = false;
+
+                        Activity currentActivity(activityTitle,activityDate,bUrgent);
+                        currentList.addActivity(currentActivity);
+                    }
+
+                }
                 myfile.close();
             }
         }
@@ -60,12 +99,14 @@ int main() {
     return 0;
 }
 
-    void HandleList(CollectionLists AllLists, int index) {
+    void HandleList(CollectionLists& AllLists, int index) {
         List ActiveList(AllLists.getList(index));
         std::string azione, titolo, data, urg;
         int numAct;
         bool urgent;
         Activity a;
+
+        cout << "Lista: " << ActiveList.getTitolo() << endl;  //su quale lista sto lavorando
 
         while (azione != "E") {
             std::cout << "[P] Elenco attivita' - [A] Aggiungi attivita' - [M] Modifica attivita' - [E] Ritorna al menu' principale"<< std::endl;
@@ -90,7 +131,8 @@ int main() {
 
                 Activity b(titolo, data, urgent);
                 ActiveList.addActivity(b);
-
+                AllLists.editList(index,ActiveList);
+                cout << "Nuova attivita' aggiunta: " << b.getDescription() << endl;
             }
             else if (azione == "M"){
                 std::string set, newTitle, newDate, newUrgent;
@@ -121,8 +163,10 @@ int main() {
                     }
                 }
 
-                ActiveList.addActivity(a);
-                ActiveList.removeActivity(numAct);
+                ActiveList.editActivity(numAct, a.getTitle(), a.getDate(), a.isUrgent());
+                AllLists.editList(index, ActiveList); //aggiorniamo la lista dentro la collezione principale così da non perdere gli aggiornamenti
+                cout << "Attivita' modificata: " << a.getDescription() << endl;
+
             }
             azione =="";
         }

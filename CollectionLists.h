@@ -11,9 +11,13 @@
 class CollectionLists {
 public:
     CollectionLists();
-    //add list
-    void addList(std::string title);
     List getList(int index);
+    //add list
+    void addList(std::string title); // aggiunge lista vuota con solo titolo
+    void addList(List oList); // aggiunge lista come oggetto
+
+    // edit list
+    void editList(int index, List oList);
 
     // view list
     void printLists();

@@ -40,3 +40,11 @@ void CollectionLists::deleteList(int index) {
 const std::vector<List> &CollectionLists::getFullCollection() const {
     return fullCollection;
 }
+
+void CollectionLists::editList(int index, List oList) {
+    fullCollection.at(index) = oList;
+}
+
+void CollectionLists::addList(List oList) {
+    fullCollection.push_back(oList);
+}
