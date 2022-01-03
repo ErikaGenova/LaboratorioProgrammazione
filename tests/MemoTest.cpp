@@ -3,12 +3,12 @@
 //
 
 #include "gtest/gtest.h"
-#include "../ListaMemo.h"
-#include "../Promemoria.h"
+#include "../List.h"
+#include "../Activity.h"
 
 TEST(MemoTest, ctorTest){
-    Promemoria a("descrizione", "oggi", false);
-    EXPECT_EQ(a.getDescription(), "descrizione");
+    Activity a("descrizione", "oggi", false);
+    EXPECT_EQ(a.getTitle(), "descrizione");
     EXPECT_EQ(a.getDate(), "oggi");
     EXPECT_EQ(a.isUrgent(), false);
 }

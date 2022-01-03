@@ -3,20 +3,20 @@
 //
 
 #include "gtest/gtest.h"
-#include "../ListaMemo.h"
-#include "../Promemoria.h"
+#include "../List.h"
+#include "../Activity.h"
 
 TEST(Lista, testAddActivity){
-    ListaMemo test("provaLista");
-    Promemoria a("prova","oggi", true);
+    List test("provaLista");
+    Activity a("prova","oggi", true);
     test.addActivity(&a);
     EXPECT_EQ(test.countActivities(),1);
 
 }
 
 TEST(Lista, testRemoveActivity){
-    ListaMemo test("prova");
-    Promemoria a("prova", "settimana", false);
+    List test("prova");
+    Activity a("prova", "settimana", false);
     test.addActivity(&a);
     test.removeActivity(&a);
     EXPECT_EQ(0, 0);
