@@ -11,9 +11,9 @@ int main() {
     std::string titolo, azione;
     CollectionLists toDo;
 
-    std::cout << "Inserire titolo della prima lista"<< std::endl;
-    std::cin >> titolo;
-    toDo.addList(titolo);
+    //std::cout << "Inserire titolo della prima lista"<< std::endl;
+    //std::cin >> titolo;
+    //toDo.addList(titolo);
 
     while (azione != "Q") {
         std::cout << "[L] Elenco liste - [A] Aggiungi lista - [M] Modifica lista - [S] Salva su file - [R] Leggi da file - [Q] Esci"<< std::endl;
@@ -58,7 +58,7 @@ int main() {
             fstream myfile;
             List currentList;
             string listTitle, activityTitle, activityDate, activityUrgent;
-            bool bUrgent;
+            bool bUrgent, firstList=true;
             int listIndex=-1;
             myfile.open ("ToDo.txt", ios::in);
 
@@ -68,10 +68,16 @@ int main() {
                 while (getline(myfile, line)){
                     if (line[0] == '<') {
                         listTitle = line.substr(1, line.length()-2);
-                        //List currentList(listTitle);
+
+                        if (firstList) {
+                            firstList = false;
+                         }
+                        else {
+                            toDo.addList(currentList);
+                            currentList.cleanList();
+                        }
+
                         currentList.setTitolo(listTitle);
-                        toDo.addList(currentList);
-                        //listIndex++;
                     }
                     else {
                         activityTitle = line.substr(0, line.find(','));
@@ -87,9 +93,11 @@ int main() {
 
                         Activity currentActivity(activityTitle,activityDate,bUrgent);
                         currentList.addActivity(currentActivity);
+
                     }
 
                 }
+                toDo.addList(currentList);
                 myfile.close();
             }
         }

@@ -79,3 +79,8 @@ void List::editActivity(int index, string newTitle, string newDate, bool newUrge
     memo.at(index).setDate(newDate);
     memo.at(index).setUrgent(newUrgent);
 }
+
+void List::cleanList() {
+    memo.erase(memo.begin(), memo.end());
+    titolo = "";
+}

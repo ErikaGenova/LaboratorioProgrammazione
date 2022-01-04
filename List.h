@@ -19,6 +19,7 @@ public:
     void addActivity(Activity p);
     void editActivity(int index, string newTitle, string newDate, bool newUrgent);
     void removeActivity(int num);
+    void cleanList();
 
     void listActivities() const;
     int countActivities();
@@ -34,7 +35,6 @@ public:
 private:
     std::vector<Activity> memo;
     std::string titolo;
-    std::string temp;
 
 };
 
