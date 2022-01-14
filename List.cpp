@@ -42,18 +42,14 @@ void List::urgentList() const {
 }
 
 //stampa tutte le attività nella lista
-void List::listActivities() const {
+int List::listActivities() const {
     int a=0;
     for (auto i: this->memo) {
         std::cout << a << " - " << i.getDescription() << std::endl;
-        /*if (i.isUrgent())
-            std::cout << a << " - " << i.getTitle() << ", " << i.getDate() << ", urgente" << std::endl;
-        else
-            std::cout << a << " - " << i.getTitle() << ", " << i.getDate() << ", non urgente" << std::endl;
-*/
         a++;
-
     }
+    //returns a for test
+    return a;
 }
 
 //conta attività nella lista

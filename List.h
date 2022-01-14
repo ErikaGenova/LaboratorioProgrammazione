@@ -21,7 +21,7 @@ public:
     void removeActivity(int num);
     void cleanList();
 
-    void listActivities() const;
+    int listActivities() const;
     int countActivities();
 
     const std::string &getTitolo() const;
