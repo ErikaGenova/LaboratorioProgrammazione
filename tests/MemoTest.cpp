@@ -12,3 +12,8 @@ TEST(MemoTest, ctorTest){
     EXPECT_EQ(a.getDate(), "oggi");
     EXPECT_EQ(a.isUrgent(), false);
 }
+
+TEST(MemoTest, getDescriptionTest){
+    Activity b("prova", "domani", false);
+    EXPECT_EQ(b.getDescription(), "prova,domani,non urgente");
+}
