@@ -39,7 +39,7 @@ int main() {
 
                 for (int i = 0; i < allLists.size(); i++) {
                     List loopList = allLists.at(i);
-                    myfile << "<" << loopList.getTitolo() << ">" << std::endl;
+                    myfile << "<" << loopList.getTitle() << ">" << std::endl;
 
                     for (int j = 0; j < loopList.countActivities(); j++) {
                         myfile << " " << loopList.getActivity(j).getDescription() << std::endl;
@@ -74,7 +74,7 @@ int main() {
                             currentList.cleanList();
                         }
 
-                        currentList.setTitolo(listTitle);
+                        currentList.setTitle(listTitle);
                     }
                     else {
                         activityTitle = line.substr(0, line.find(','));
@@ -111,7 +111,7 @@ int main() {
         bool urgent;
         Activity a;
 
-        cout << "Lista: " << activeList.getTitolo() << endl;  //su quale lista sto lavorando
+        cout << "Lista: " << activeList.getTitle() << endl;  //su quale lista sto lavorando
 
         while (azione != "E") {
             std::cout << "[P] Elenco attivita' - [A] Aggiungi attivita' - [M] Modifica attivita' - [E] Ritorna al menu' principale"<< std::endl;

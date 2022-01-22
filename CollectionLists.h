@@ -12,6 +12,8 @@ class CollectionLists {
 public:
     CollectionLists();
     List getList(int index);
+    List getList(std::string title);
+
     //add list
     void addList(const std::string title); // aggiunge lista vuota con solo titolo
     void addList( const List& oList); // passa lista per referenza
@@ -30,6 +32,11 @@ public:
     //cancella lista in base al titolo
     void deleteList(std::string title);
 
+    //editList in base al titolo
+    void editList(std::string title, std::string newTitle);
+
+    //sposta attività da una lista all'altra
+    void moveActivity(const std::string& oldList, const std::string& newList,const std::string& title);
 
 private:
     std::vector<List> fullCollection;

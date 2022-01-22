@@ -16,17 +16,19 @@ public:
     List(const std::string &titolo);
 
     Activity getActivity(int index);
+    Activity getActivity(std::string title);
     void addActivity(Activity p);
     void editActivity(int index, string newTitle, string newDate, bool newUrgent);
     void removeActivity(int num);
+    void removeActivity(std::string title);
     void cleanList();
 
     int listActivities() const;
     int countActivities();
 
-    const std::string &getTitolo() const;
+    const std::string &getTitle() const;
 
-    void setTitolo(const std::string &titolo);
+    void setTitle(const std::string &titolo);
 
     void urgentList() const;
 

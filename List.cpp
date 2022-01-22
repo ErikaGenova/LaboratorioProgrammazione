@@ -7,11 +7,11 @@
 
 List::List(const std::string &titolo) : titolo(titolo) {}
 
-const std::string &List::getTitolo() const {
+const std::string &List::getTitle() const {
     return titolo;
 }
 
-void List::setTitolo(const std::string &titolo) {
+void List::setTitle(const std::string &titolo) {
     List::titolo = titolo;
 }
 
@@ -91,4 +91,28 @@ bool List::findActivity(const std::string title) {
     }
 
     throw std::invalid_argument("Promemoria non esistente");
+}
+
+Activity List::getActivity(std::string title) {
+    bool activityExists = false;
+    int index = 0;
+    for (auto i: this->memo){
+        if (i.getTitle() == title) {
+            return memo.at(index);
+            activityExists = true;
+        }
+        index++;
+    }
+    if (!activityExists)
+        throw std::invalid_argument("Promemoria non esistente");
+
+}
+
+void List::removeActivity(std::string title) {
+    int index = 0;
+    for (auto i: this->memo){
+        if (i.getTitle() == title)
+            memo.erase(memo.begin()+index);
+        index++;
+    }
 }
