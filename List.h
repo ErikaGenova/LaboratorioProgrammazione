@@ -30,6 +30,9 @@ public:
 
     void urgentList() const;
 
+    //cerca attività in base al titolo
+    bool findActivity ( const std::string title);
+
     friend std::ostream &operator<<(std::ostream &os, const List &list);
 
 private:

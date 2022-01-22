@@ -80,3 +80,15 @@ void List::cleanList() {
     memo.erase(memo.begin(), memo.end());
     titolo = "";
 }
+
+bool List::findActivity(const std::string title) {
+    bool found = false;
+    for (auto i : this->memo){
+        if (i.getTitle() == title){
+            found = true;
+            return found;
+        }
+    }
+
+    throw std::invalid_argument("Promemoria non esistente");
+}

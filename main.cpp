@@ -11,9 +11,6 @@ int main() {
     std::string titolo, azione;
     CollectionLists toDo;
 
-    //std::cout << "Inserire titolo della prima lista"<< std::endl;
-    //std::cin >> titolo;
-    //toDo.addList(titolo);
 
     while (azione != "Q") {
         std::cout << "[L] Elenco liste - [A] Aggiungi lista - [M] Modifica lista - [S] Salva su file - [R] Leggi da file - [Q] Esci"<< std::endl;
@@ -108,20 +105,20 @@ int main() {
 }
 
     void HandleList(CollectionLists& AllLists, int index) {
-        List ActiveList(AllLists.getList(index));
+        List activeList(AllLists.getList(index));
         std::string azione, titolo, data, urg;
         int numAct;
         bool urgent;
         Activity a;
 
-        cout << "Lista: " << ActiveList.getTitolo() << endl;  //su quale lista sto lavorando
+        cout << "Lista: " << activeList.getTitolo() << endl;  //su quale lista sto lavorando
 
         while (azione != "E") {
             std::cout << "[P] Elenco attivita' - [A] Aggiungi attivita' - [M] Modifica attivita' - [E] Ritorna al menu' principale"<< std::endl;
             std::cin >> azione;
 
             if (azione == "P") {
-                ActiveList.listActivities();
+                activeList.listActivities();
             }
             else if (azione == "A") {
                 std::cout << "Inserire titolo del nuovo promemoria" << std::endl;
@@ -138,15 +135,15 @@ int main() {
                     urgent = false;
 
                 Activity b(titolo, data, urgent);
-                ActiveList.addActivity(b);
-                AllLists.editList(index,ActiveList);
+                activeList.addActivity(b);
+                AllLists.editList(index, activeList);
                 cout << "Nuova attivita' aggiunta: " << b.getDescription() << endl;
             }
             else if (azione == "M"){
                 std::string set, newTitle, newDate, newUrgent;
                 std::cout << "Inserisci numero dell'attivita' " <<std::endl;
                 std::cin >> numAct;
-                a = ActiveList.getActivity(numAct);   //lavoro sull'attività scelta dall'utente
+                a = activeList.getActivity(numAct);   //lavoro sull'attività scelta dall'utente
 
                 std::cout << a.getTitle() << std::endl;
 
@@ -171,8 +168,8 @@ int main() {
                     }
                 }
 
-                ActiveList.editActivity(numAct, a.getTitle(), a.getDate(), a.isUrgent());
-                AllLists.editList(index, ActiveList); //aggiorniamo la lista dentro la collezione principale così da non perdere gli aggiornamenti
+                activeList.editActivity(numAct, a.getTitle(), a.getDate(), a.isUrgent());
+                AllLists.editList(index, activeList); //aggiorniamo la lista dentro la collezione principale così da non perdere gli aggiornamenti
                 cout << "Attivita' modificata: " << a.getDescription() << endl;
 
             }

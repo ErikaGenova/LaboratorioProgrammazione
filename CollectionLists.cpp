@@ -5,7 +5,7 @@
 #include "CollectionLists.h"
 #include <stdexcept>
 
-void CollectionLists::addList(std::string title) {
+void CollectionLists::addList(const std::string title) {
     List newList(title);
     fullCollection.push_back(newList);
 }
@@ -41,10 +41,27 @@ const std::vector<List> &CollectionLists::getFullCollection() const {
     return fullCollection;
 }
 
-void CollectionLists::editList(int index, List oList) {
+void CollectionLists::editList(int index, const List& oList) {
     fullCollection.at(index) = oList;
 }
 
-void CollectionLists::addList(List oList) {
+void CollectionLists::addList(const List& oList) {
     fullCollection.push_back(oList);
 }
+
+void CollectionLists::deleteList(std::string title) {
+    bool found = false;
+    int index = 0;
+    for (auto i: this->fullCollection){
+        if( i.getTitolo()== title) {
+            fullCollection.erase(fullCollection.begin() + index);
+            found= true;
+        }
+        index++;
+    }
+
+    if (!found)
+        throw std::invalid_argument("Non è possibile eliminare questa lista perché non esiste");
+}
+
+

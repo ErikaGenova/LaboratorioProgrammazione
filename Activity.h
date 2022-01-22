@@ -4,14 +4,16 @@
 
 #ifndef LABORATORIOPROGRAMMAZIONE_ACTIVITY_H
 #define LABORATORIOPROGRAMMAZIONE_ACTIVITY_H
+
 #include <string>
 
 using namespace std;
 
 class Activity {
 public:
-    Activity ();
-    Activity(std::string title, std::string date, bool urgent);
+    Activity() = default;
+
+    Activity(std::string title, std::string date, bool urgent, bool complete = false);
 
     const std::string &getTitle() const;
 
@@ -28,10 +30,14 @@ public:
     //funzione che ritorna titolo,data,urgenza
     string getDescription();
 
+    //funzione attività completata
+    void setCompleted(bool completed);
+
 private:
-    std::string description;
-    std::string date;
-    bool urgent;
+    std::string description{"Promemoria"};
+    std::string date{"01/01/2022"};
+    bool urgent = false;
+    bool completed = false;
 };
 
 

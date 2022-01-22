@@ -13,18 +13,23 @@ public:
     CollectionLists();
     List getList(int index);
     //add list
-    void addList(std::string title); // aggiunge lista vuota con solo titolo
-    void addList(List oList); // aggiunge lista come oggetto
+    void addList(const std::string title); // aggiunge lista vuota con solo titolo
+    void addList( const List& oList); // passa lista per referenza
 
     // edit list
-    void editList(int index, List oList);
+    void editList(int index, const List& oList);
 
     // view list
     void printLists();
+
     //delete list
     void deleteList(int index);
 
     const std::vector<List> &getFullCollection() const;
+
+    //cancella lista in base al titolo
+    void deleteList(std::string title);
+
 
 private:
     std::vector<List> fullCollection;
