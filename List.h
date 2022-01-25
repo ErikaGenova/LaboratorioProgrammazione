@@ -18,19 +18,26 @@ public:
     Activity getActivity(int index);
     Activity getActivity(std::string title);
     void addActivity(Activity p);
-    void editActivity(int index, string newTitle, string newDate, bool newUrgent);
+    void editActivity(int index, string newTitle, Date& newDate, bool newUrgent, bool newCompleted);
     void removeActivity(int num);
     void removeActivity(std::string title);
     void cleanList();
 
     int listActivities() const;
-    int countActivities();
+    int countActivities() const;
 
     const std::string &getTitle() const;
 
     void setTitle(const std::string &titolo);
 
     void urgentList() const;
+
+    //quante sono le attività urgenti
+    int howManyUrgent() const;
+
+    //quante sono le attività DA COMPLETARE
+    int howManyCompleted() const;
+
 
     //cerca attività in base al titolo
     bool findActivity ( const std::string title);

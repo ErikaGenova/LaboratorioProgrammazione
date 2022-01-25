@@ -20,10 +20,10 @@ void List::addActivity(Activity p) {
 }
 
 void List::removeActivity(int num) {
-    if (num < 0 || num > memo.size()-1)
+    if (num < 0 || num > memo.size() - 1)
         throw std::invalid_argument("Lista non esistente, immettere un numero valido!");
     else
-    memo.erase(memo.begin()+num);
+        memo.erase(memo.begin() + num);
 }
 
 std::ostream &operator<<(std::ostream &os, const List &list) {
@@ -35,7 +35,7 @@ std::ostream &operator<<(std::ostream &os, const List &list) {
 
 //stampa attività urgenti
 void List::urgentList() const {
-    for (auto i: this->memo )
+    for (auto i: this->memo)
         if (i.isUrgent())
             std::cout << i.getTitle() << std::endl;
 
@@ -43,9 +43,9 @@ void List::urgentList() const {
 
 //stampa tutte le attività nella lista
 int List::listActivities() const {
-    int a=0;
+    int a = 0;
     for (auto i: this->memo) {
-        std::cout << a << " - " << i.getDescription() << std::endl;
+        std::cout << a << " - " << i << std::endl;
         a++;
     }
     //returns a for test
@@ -53,8 +53,8 @@ int List::listActivities() const {
 }
 
 //conta attività nella lista
-int List::countActivities() {
-    int count=0;
+int List::countActivities() const {
+    int count = 0;
     for (auto i: this->memo)
         count++;
     std::cout << count << std::endl;
@@ -66,14 +66,15 @@ Activity List::getActivity(int index) {
     return memo.at(index);
 }
 
-List::List() {
+List::List() : titolo("Lista") {
 
 }
 
-void List::editActivity(int index, string newTitle, string newDate, bool newUrgent) {
+void List::editActivity(int index, string newTitle, Date& newDate, bool newUrgent, bool newCompleted) {
     memo.at(index).setTitle(newTitle);
     memo.at(index).setDate(newDate);
     memo.at(index).setUrgent(newUrgent);
+    memo.at(index).setCompleted(newCompleted);
 }
 
 void List::cleanList() {
@@ -83,8 +84,8 @@ void List::cleanList() {
 
 bool List::findActivity(const std::string title) {
     bool found = false;
-    for (auto i : this->memo){
-        if (i.getTitle() == title){
+    for (auto i: this->memo) {
+        if (i.getTitle() == title) {
             found = true;
             return found;
         }
@@ -94,25 +95,41 @@ bool List::findActivity(const std::string title) {
 }
 
 Activity List::getActivity(std::string title) {
-    bool activityExists = false;
     int index = 0;
-    for (auto i: this->memo){
+    for (auto i: this->memo) {
         if (i.getTitle() == title) {
             return memo.at(index);
-            activityExists = true;
         }
         index++;
     }
-    if (!activityExists)
         throw std::invalid_argument("Promemoria non esistente");
 
 }
 
 void List::removeActivity(std::string title) {
     int index = 0;
-    for (auto i: this->memo){
+    for (auto i: this->memo) {
         if (i.getTitle() == title)
-            memo.erase(memo.begin()+index);
+            memo.erase(memo.begin() + index);
         index++;
     }
+}
+
+int List::howManyUrgent() const {
+    int urgent = 0;
+    for (auto i: this->memo) {
+        if (i.isUrgent())
+            urgent++;
+    }
+    return urgent;
+}
+
+int List::howManyCompleted() const {
+    int completed = 0;
+    for (auto i: this->memo) {
+        if (i.isComplete())
+            completed++;
+    }
+
+    return completed;
 }
