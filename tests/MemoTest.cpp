@@ -7,13 +7,18 @@
 #include "../Activity.h"
 
 TEST(MemoTest, ctorTest){
-    Activity a("descrizione", "oggi", false);
+    Date d(01, Gennaio, 2020);
+    Activity a("descrizione", d , false);
     EXPECT_EQ(a.getTitle(), "descrizione");
-    EXPECT_EQ(a.getDate(), "oggi");
+    EXPECT_EQ(a.getDate().toString(), "1/1/2020");
     EXPECT_EQ(a.isUrgent(), false);
 }
 
-TEST(MemoTest, getDescriptionTest){
-    Activity b("prova", "domani", false);
-    EXPECT_EQ(b.getDescription(), "prova,domani,non urgente");
+
+TEST(MemoTest, setCompletedTest){
+    Date d(01, Gennaio, 2020);
+    Activity b("prova", d, true);
+    EXPECT_EQ(b.isComplete(), false);
+    b.setCompleted(true);
+    EXPECT_EQ(b.isComplete(), true);
 }

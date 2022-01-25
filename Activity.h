@@ -6,6 +6,8 @@
 #define LABORATORIOPROGRAMMAZIONE_ACTIVITY_H
 
 #include <string>
+#include <ostream>
+#include "Date.h"
 
 using namespace std;
 
@@ -13,29 +15,32 @@ class Activity {
 public:
     Activity() = default;
 
-    Activity(std::string title, std::string date, bool urgent, bool complete = false);
+    Activity(std::string title, Date& date, bool urgent, bool complete = false);
 
     const std::string &getTitle() const;
 
     void setTitle(const std::string &title);
 
-    const std::string &getDate() const;
+    const Date& getDate() const;
 
-    void setDate(const std::string &date);
+    void setDate(const Date &date);
 
     bool isUrgent() const;
 
     void setUrgent(bool urgent);
 
     //funzione che ritorna titolo,data,urgenza
-    string getDescription();
+  //  string getDescription();
 
     //funzione attività completata
     void setCompleted(bool completed);
+    bool isComplete() const;
+
+    friend ostream &operator<<(ostream &os, const Activity &activity);
 
 private:
     std::string description{"Promemoria"};
-    std::string date{"01/01/2022"};
+    Date date{1,Gennaio, 2022};
     bool urgent = false;
     bool completed = false;
 };
