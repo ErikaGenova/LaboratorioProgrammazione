@@ -3,7 +3,7 @@ project(LaboratorioProgrammazione)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(PROJECT_SOURCES main.cpp Activity.cpp Activity.h List.cpp List.h CollectionLists.cpp CollectionLists.h)
+set(PROJECT_SOURCES main.cpp Activity.cpp Activity.h List.cpp List.h CollectionLists.cpp CollectionLists.h Date.cpp Date.h)
 
 add_executable(LaboratorioProgrammazione main.cpp)
 

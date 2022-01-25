@@ -89,6 +89,7 @@ void CollectionLists::moveActivity(const std::string &oldList, const std::string
 
 }
 
+//ritorna una lista in base al titolo
 List CollectionLists::getList(std::string title) {
     bool exists = false;
     int index = 0;
@@ -101,6 +102,26 @@ List CollectionLists::getList(std::string title) {
     if (!exists)
         throw std::invalid_argument("Lista non esistente");
 
+}
+
+void CollectionLists::printActivitiesInList(const std::string title) const {
+    bool listExists = false;
+    for(auto i: this->fullCollection){
+        if (i.getTitle() == title){
+            i.listActivities();
+            listExists= true;
+        }
+    }
+    if (!listExists)
+        throw std::invalid_argument("Lista non esistente");
+}
+
+int CollectionLists::countLists() const {
+    int count=0;
+    for(auto i: this->fullCollection){
+        count++;
+    }
+    return count;
 }
 
 

@@ -24,6 +24,9 @@ public:
     // view list
     void printLists();
 
+    //conta quante liste ci sono (mi serve per il test)
+    int countLists() const ;
+
     //delete list
     void deleteList(int index);
 
@@ -37,6 +40,9 @@ public:
 
     //sposta attività da una lista all'altra
     void moveActivity(const std::string& oldList, const std::string& newList,const std::string& title);
+
+    //stampa le attività di una specifica lista
+    void printActivitiesInList( const std::string title) const;
 
 private:
     std::vector<List> fullCollection;
