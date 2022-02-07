@@ -15,7 +15,7 @@ void List::setTitle(const std::string &titolo) {
     List::titolo = titolo;
 }
 
-void List::addActivity(Activity p) {
+void List::addActivity(const Activity& p) {
     memo.push_back(p);
 }
 
@@ -57,12 +57,12 @@ int List::countActivities() const {
     int count = 0;
     for (auto i: this->memo)
         count++;
-    std::cout << count << std::endl;
+    //std::cout << count << std::endl;
 
     return count;
 }
 
-Activity List::getActivity(int index) {
+Activity List::getActivity(int index) const {
     return memo.at(index);
 }
 
@@ -70,7 +70,7 @@ List::List() : titolo("Lista") {
 
 }
 
-void List::editActivity(int index, string newTitle, Date& newDate, bool newUrgent, bool newCompleted) {
+void List::editActivity(int index, const string& newTitle, Date& newDate, bool newUrgent, bool newCompleted) {
     memo.at(index).setTitle(newTitle);
     memo.at(index).setDate(newDate);
     memo.at(index).setUrgent(newUrgent);
@@ -82,19 +82,18 @@ void List::cleanList() {
     titolo = "";
 }
 
-bool List::findActivity(const std::string title) {
-    bool found = false;
+bool List::findActivity(const std::string& title) {
+
     for (auto i: this->memo) {
         if (i.getTitle() == title) {
-            found = true;
-            return found;
+            return true;
         }
     }
 
     throw std::invalid_argument("Promemoria non esistente");
 }
 
-Activity List::getActivity(std::string title) {
+Activity List::getActivity(const std::string& title) const{
     int index = 0;
     for (auto i: this->memo) {
         if (i.getTitle() == title) {

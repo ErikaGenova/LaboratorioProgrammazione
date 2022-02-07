@@ -5,7 +5,7 @@
 #include "CollectionLists.h"
 #include <stdexcept>
 
-void CollectionLists::addList(const std::string title) {
+void CollectionLists::addList(const std::string& title) {
     List newList(title);
     fullCollection.push_back(newList);
 }
@@ -49,7 +49,7 @@ void CollectionLists::addList(const List &oList) {
     fullCollection.push_back(oList);
 }
 
-void CollectionLists::deleteList(std::string title) {
+void CollectionLists::deleteList(const std::string& title) {
     bool found = false;
     int index = 0;
     for (auto i: this->fullCollection) {
@@ -64,7 +64,7 @@ void CollectionLists::deleteList(std::string title) {
         throw std::invalid_argument("Non è possibile eliminare questa lista perché non esiste");
 }
 
-void CollectionLists::editList(std::string title, std::string newTitle) {
+void CollectionLists::editList(const std::string& title, const std::string& newTitle) {
     int index = 0;
     for (auto i: this->fullCollection) {
         if(i.getTitle() == title){
@@ -90,7 +90,7 @@ void CollectionLists::moveActivity(const std::string &oldList, const std::string
 }
 
 //ritorna una lista in base al titolo
-List CollectionLists::getList(std::string title) {
+List CollectionLists::getList(const std::string& title) {
     bool exists = false;
     int index = 0;
     for (auto i: this->fullCollection) {
@@ -104,7 +104,7 @@ List CollectionLists::getList(std::string title) {
 
 }
 
-void CollectionLists::printActivitiesInList(const std::string title) const {
+void CollectionLists::printActivitiesInList(const std::string& title) const {
     bool listExists = false;
     for(auto i: this->fullCollection){
         if (i.getTitle() == title){

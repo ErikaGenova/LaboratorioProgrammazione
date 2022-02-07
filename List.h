@@ -15,10 +15,10 @@ public:
     List();
     List(const std::string &titolo);
 
-    Activity getActivity(int index);
-    Activity getActivity(std::string title);
-    void addActivity(Activity p);
-    void editActivity(int index, string newTitle, Date& newDate, bool newUrgent, bool newCompleted);
+    Activity getActivity(int index) const;
+    Activity getActivity(const std::string& title) const;
+    void addActivity(const Activity& p);
+    void editActivity(int index, const string& newTitle, Date& newDate, bool newUrgent, bool newCompleted);
     void removeActivity(int num);
     void removeActivity(std::string title);
     void cleanList();
@@ -40,7 +40,7 @@ public:
 
 
     //cerca attività in base al titolo
-    bool findActivity ( const std::string title);
+    bool findActivity ( const std::string& title);
 
     friend std::ostream &operator<<(std::ostream &os, const List &list);
 
