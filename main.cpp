@@ -42,7 +42,7 @@ int main() {
                     myfile << "<" << loopList.getTitle() << ">" << std::endl;
 
                     for (int j = 0; j < loopList.countActivities(); j++) {
-                        myfile << " " << loopList.getActivity(j).getDescription() << std::endl;
+                        myfile << " " << loopList.getActivity(j) << std::endl;
                     }
                 };
 
@@ -88,7 +88,9 @@ int main() {
                         else
                             bUrgent = false;
 
-                        Activity currentActivity(activityTitle,activityDate,bUrgent);
+                        Date act(activityDate) ;
+
+                        Activity currentActivity(activityTitle,act,bUrgent);
                         currentList.addActivity(currentActivity);
 
                     }
@@ -134,10 +136,12 @@ int main() {
                 else
                     urgent = false;
 
-                Activity b(titolo, data, urgent);
+                Date date(data);
+
+                Activity b(titolo, date, urgent);
                 activeList.addActivity(b);
                 AllLists.editList(index, activeList);
-                cout << "Nuova attivita' aggiunta: " << b.getDescription() << endl;
+                cout << "Nuova attivita' aggiunta: " << b << endl;
             }
             else if (azione == "M"){
                 std::string set, newTitle, newDate, newUrgent;
@@ -156,7 +160,9 @@ int main() {
                 } else if (set == "D"){
                     std::cout << "Imposta nuova data: " << std::endl;
                     std::cin >> newDate;
-                    a.setDate(newDate);
+
+                    Date newData(newDate);
+                    a.setDate(newData);
                 } else if (set == "U"){
                     if (a.isUrgent()) {
                         a.setUrgent(false);
@@ -168,9 +174,9 @@ int main() {
                     }
                 }
 
-                activeList.editActivity(numAct, a.getTitle(), a.getDate(), a.isUrgent());
+                activeList.editActivity(numAct, a.getTitle(), const_cast<Date &>(a.getDate()), a.isUrgent(), a.isComplete());
                 AllLists.editList(index, activeList); //aggiorniamo la lista dentro la collezione principale così da non perdere gli aggiornamenti
-                cout << "Attivita' modificata: " << a.getDescription() << endl;
+                cout << "Attivita' modificata: " << a << endl;
 
             }
             azione =="";

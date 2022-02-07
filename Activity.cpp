@@ -5,7 +5,7 @@
 #include "Activity.h"
 #include <string>
 #include <iostream>
-Activity::Activity(std::string title, Date& date, bool urgent, bool complete) : description(title), date(date), urgent(urgent) {}
+Activity::Activity(const std::string& title,const Date& date, bool urgent, bool complete) : description(title), date(date), urgent(urgent) {}
 
 const std::string &Activity::getTitle() const {
     return description;
@@ -31,16 +31,6 @@ void Activity::setDate(const Date &date) {
     Activity::date = date;
 }
 
-//Activity::Activity() {}
-
-/* std::string Activity::getDescription() {
-
-    if (Activity::isUrgent())
-        return   Activity::description + "," + Activity::date + ",urgente" ;
-    else
-        return   Activity::description + "," + Activity::date + ",non urgente" ;
-
-} */
 
 void Activity::setCompleted(bool completed) {
     Activity::completed = completed;

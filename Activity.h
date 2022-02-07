@@ -15,7 +15,7 @@ class Activity {
 public:
     Activity() = default;
 
-    Activity(std::string title, Date& date, bool urgent, bool complete = false);
+    Activity(const std::string& title, const Date& date, bool urgent, bool complete = false);
 
     const std::string &getTitle() const;
 
@@ -28,9 +28,6 @@ public:
     bool isUrgent() const;
 
     void setUrgent(bool urgent);
-
-    //funzione che ritorna titolo,data,urgenza
-  //  string getDescription();
 
     //funzione attività completata
     void setCompleted(bool completed);
