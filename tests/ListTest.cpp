@@ -60,6 +60,7 @@ TEST(Lista, findActivityTest){
     test.addActivity(b);
     test.addActivity(c);
     EXPECT_EQ(test.findActivity("prova3"), true);
+    EXPECT_THROW(test.findActivity("attività"), std::invalid_argument);
 
 }
 

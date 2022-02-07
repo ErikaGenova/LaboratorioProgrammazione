@@ -7,7 +7,7 @@
 #include "../Activity.h"
 #include "../CollectionLists.h"
 
-TEST(CollTest, countListTest){
+TEST(CollTest, countListTest) {
     CollectionLists principale;
     List a("Lista a");
     List b("Lista b");
@@ -19,7 +19,7 @@ TEST(CollTest, countListTest){
     EXPECT_EQ(principale.countLists(), 3);
 }
 
-TEST(CollTest, delListTitleTest){
+TEST(CollTest, delListTitleTest) {
     CollectionLists principale;
     List a("Lista a");
     List b("Lista b");
@@ -30,12 +30,11 @@ TEST(CollTest, delListTitleTest){
     principale.deleteList("Lista b");
     principale.printLists();
     EXPECT_EQ(principale.countLists(), 2);
+    EXPECT_THROW(principale.deleteList("Lista principale"), std::invalid_argument);
 
-   // principale.deleteList("Lista principale");
-    //TODO come faccio a fare passare il test con l'errore? Voglio che sia corretto che dia errore quando la lista non esiste
 }
 
-TEST(CollTest, editListTest){
+TEST(CollTest, editListTest) {
     CollectionLists principale;
     List a("Lista 1");
     List b("Lista 2");
@@ -46,5 +45,24 @@ TEST(CollTest, editListTest){
     principale.printLists();
     principale.editList("Lista 3", "Terza lista");
     principale.printLists();
-  //  EXPECT_EQ(principale.getList(2), "Terza lista");
+    EXPECT_EQ(principale.getList(2).getTitle(), "Terza lista");
+}
+
+TEST(CollTest, moveActTest) {   // test per spostare un'attività da una lista all'altra
+    CollectionLists principale;
+    List a("Lista casa");
+    List b("Lista università");
+    Date d(7, Febbraio, 2022);
+    Activity actOne("casa", d, true);
+    Activity actTwo("uni", d, true);
+    a.addActivity(actTwo);
+    b.addActivity(actOne);
+    a.listActivities();
+    b.listActivities();
+    principale.addList(a);
+    principale.addList(b);
+    principale.moveActivity("Lista casa", "Lista università", "uni");
+    principale.moveActivity("Lista università", "Lista casa", "casa");
+    a.listActivities();
+    b.listActivities();
 }
