@@ -15,7 +15,7 @@ class Date {
 public:
     Date();
     Date(int day, Month month, int year);
-    explicit Date(std::string str);
+    explicit Date(const std::string& str);
 
     int getYear() const;
     Month getMonth() const;
@@ -32,6 +32,7 @@ private:
     int day;
     Month month;
     int year;
+    bool checkDate(int newDay, Month newMonth, int newYear);
 };
 
 

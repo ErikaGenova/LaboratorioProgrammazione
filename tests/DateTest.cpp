@@ -40,3 +40,15 @@ TEST(Data, setYearTest) {
 
     EXPECT_THROW(g.setYear(1800), std::out_of_range);
 }
+
+TEST(Data, setMonthTest){
+    Date d;
+    Date e(31, Gennaio, 1970);
+    Date f(30, Marzo, 2020);
+
+    d.setMonth(Luglio);
+    EXPECT_EQ(d.getMonth(), Luglio);
+    EXPECT_THROW(e.setMonth(Novembre), std::out_of_range);
+    EXPECT_THROW(f.setMonth(Febbraio), std::out_of_range);
+
+}
