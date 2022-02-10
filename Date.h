@@ -32,7 +32,7 @@ private:
     int day;
     Month month;
     int year;
-    bool checkDate(int newDay, Month newMonth, int newYear);
+    static bool checkDate(int newDay, Month newMonth, int newYear);
 };
 
 

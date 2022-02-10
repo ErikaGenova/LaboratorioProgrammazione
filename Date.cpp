@@ -43,8 +43,11 @@ std::string Date::toString() const {
     return day + "/" + month + "/" + year;
 }
 
-Date::Date(int day, Month month, int year) : day(day), month(month), year(year) {
-
+Date::Date(int day, Month month, int year) {
+    checkDate(day, month, year);
+    this->day = day;
+    this->month = month;
+    this->year = year;
 }
 
 Date::Date(const std::string &str) {
