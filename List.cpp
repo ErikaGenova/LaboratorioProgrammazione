@@ -52,14 +52,9 @@ int List::listActivities() const {
     return a;
 }
 
-//conta attività nella lista
+// conta attività nella lista
 int List::countActivities() const {
-    int count = 0;
-    for (auto i: this->memo)
-        count++;
-    //std::cout << count << std::endl;
-
-    return count;
+    return memo.size();
 }
 
 Activity List::getActivity(int index) const {
